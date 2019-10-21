@@ -54,7 +54,7 @@ public class TestaProduto {
 				System.out.println("Insira uma opção válida");
 				break;
 			}
-		}while(opcao != 8);
+		}while(opcao != 9);
 
 	}
 }

@@ -17,6 +17,10 @@ public interface IProduto{
 		
 		Scanner sc = new Scanner(System.in);
 		
+		char opcao;
+		
+//		do{
+			
 		System.out.println("---------------CADASTRO DE PRODUTO---------------");
 		
 		System.out.println("Informe a categoria do produto: ");
@@ -35,13 +39,22 @@ public interface IProduto{
 		listaDeCategorias.add(novaCategoria);	
 		
 		novoProduto.setIdDoProduto(listaDeProdutos.indexOf(novoProduto) + 1);
-		novaCategoria.setCodigoDaCategoria(listaDeCategorias.indexOf(novaCategoria) + 1);
 		
 		novoProduto.setCategoria(novaCategoria);
 		
 		System.out.println("produto cadastrado com sucesso!");
-		//listaCompras();
-
+		
+		for (Produto produto : listaDeProdutos) {
+			System.out.println(produto.getDescricaoDoProduto());
+		}
+		
+//		System.out.println("Deseja continuar ? s/n");
+//		opcao = sc.next().charAt(0);
+//		
+//		sc.nextLine();
+//		
+//		}while(opcao == 's');
+		
 	}
 	
 	public static void pesquisaProdutoPelo(String codigo){
@@ -55,37 +68,13 @@ public interface IProduto{
 			
 			if(pesquisaCodigoDoProduto.equals(produto.getCodigoDoProduto())){
 				System.out.println("\n---------PRODUTO PESQUISADO---------");
-				System.out.println("Categoria: " + produto.getCategoria().getCodigoDaCategoria() + " - " + produto.getCategoria().getNomeDaCategoria().toUpperCase());
+				System.out.println("Categoria: " + produto.getCategoria().getNomeDaCategoria().toUpperCase());
 				System.out.println("Produto: " + produto.getCodigoDoProduto() + " - " + produto.getDescricaoDoProduto().toUpperCase());
+				System.out.println("Preço: R$ " + produto.getPreco());
 				System.out.println("------------------------------------\n");
 			}	
 		}
 	}
-	
-	public static void iniciaVendaNoPdv(){
-		
-		Scanner sc = new Scanner(System.in);
-		char opcao;
-		
-		do{
-
-			System.out.println("Código do produto: ");
-			String produtoEmVenda = sc.nextLine();
-			
-			for (Produto produto : listaDeProdutos) {
-				if(produtoEmVenda.equals(produto.getCodigoDoProduto())){
-					listaProdutosEmVenda.add(produto);
-					System.out.println("Produto: " + produto.getDescricaoDoProduto());
-					System.out.println("Preço: " + produto.getPreco());
-				}
-			}
-			
-			System.out.println("Deseja continuar ? s/n");
-			opcao = sc.next().charAt(0);
-			
-		}while(opcao == 's');
-	}
-	
 	
 	public static void pesquisaProdutoPelaCategoria(){
 		
@@ -97,9 +86,9 @@ public interface IProduto{
 		for (Produto produto : listaDeProdutos) {
 			if(novaCategoria.equals(produto.getCategoria().getNomeDaCategoria())){
 				System.out.println("Categoria Pesquisada: " + produto.getCategoria().getNomeDaCategoria());
-				System.out.println(produto.getCodigoDoProduto());
-				System.out.println(produto.getDescricaoDoProduto());
-				System.out.println(produto.getPreco());
+				System.out.println("Código: " + produto.getCodigoDoProduto());
+				System.out.println("Descrição: " + produto.getDescricaoDoProduto());
+				System.out.println("Preço: R$ " + produto.getPreco());
 				System.out.println("---------------------------------------");
 			}
 		}
@@ -118,83 +107,127 @@ public interface IProduto{
 				System.out.println("1 - nome");
 				System.out.println("2 - categoria");
 				System.out.println("3 - preço");
+				opcao = sc.nextInt();
+				
+				sc.nextLine();
 				
 				switch (opcao) {
 				case 1:
+					System.out.println("\n--------------PRODUTO--------------");
+					System.out.println("Categoria: " + produto.getCategoria().getNomeDaCategoria().toUpperCase());
+					System.out.println("Produto: " + produto.getCodigoDoProduto() + " - " + produto.getDescricaoDoProduto().toUpperCase());
+					System.out.println("Preço: R$ " + produto.getPreco());
+					System.out.println("------------------------------------\n");
+					
 					System.out.println("Digite o novo nome: ");
 					String novoNome = sc.nextLine();
 					produto.setDescricaoDoProduto(novoNome);
+					
+					System.out.println("O nome foi editado com sucesso!");
 					break;
 				case 2:
+					System.out.println("\n--------------PRODUTO--------------");
+					System.out.println("Categoria: " + produto.getCategoria().getNomeDaCategoria().toUpperCase());
+					System.out.println("Produto: " + produto.getCodigoDoProduto() + " - " + produto.getDescricaoDoProduto().toUpperCase());
+					System.out.println("Preço: R$ " + produto.getPreco());
+					System.out.println("------------------------------------\n");
+					
 					System.out.println("Informe a nova categoria: ");
 					String novaCategoria = sc.nextLine();
 					produto.getCategoria().setNomeDaCategoria(novaCategoria);
+					
+					System.out.println("O nome foi editado com sucesso!");
 					break;
 				case 3:
+					System.out.println("\n--------------PRODUTO--------------");
+					System.out.println("Categoria: " + produto.getCategoria().getNomeDaCategoria().toUpperCase());
+					System.out.println("Produto: " + produto.getCodigoDoProduto() + " - " + produto.getDescricaoDoProduto().toUpperCase());
+					System.out.println("Preço: R$ " + produto.getPreco());
+					System.out.println("------------------------------------\n");
+					
 					System.out.println("Informe o novo valor do produto: ");
 					double novoPreco = sc.nextDouble();
 					produto.setPreco(novoPreco);
+					
+					System.out.println("O nome foi editado com sucesso!");
 					break;
 				default:
 					break;
 				}
 			}
-		}
+		}	
+	}
+	 
+	public static void iniciaVendaNoPdv(){
 		
+		Scanner sc = new Scanner(System.in);
+		char opcao;
+		
+		do{
+
+			System.out.println("Código do produto: ");
+			String produtoEmVenda = sc.nextLine();
+			
+			for (Produto produto : listaDeProdutos) {
+				if(produtoEmVenda.equals(produto.getCodigoDoProduto())){
+					produto.setQuantidade(1);
+					listaProdutosEmVenda.add(produto);
+					System.out.println("Produto: " + produto.getDescricaoDoProduto());
+					System.out.println("Quantidade: " + produto.getQuantidade());
+					System.out.println("Preço: " + produto.getPreco());
+				}
+			}
+			
+			System.out.println("Deseja continuar ? s/n");
+			opcao = sc.next().charAt(0);
+			
+			sc.nextLine();
+			
+		}while(opcao == 's');
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public static void listaCompras(){
+	public static void listaCompras(){   //ainda não está pronto
 		System.out.println();
-		System.out.println("--------------------------ITENS VENDIDOS-------------------------");
-		System.out.println("QTD.       CÓDIGO     DESCRIÇÃO         UNIT(R$)        TOTAL(R$)");
+		System.out.println("----------------------------ITENS VENDIDOS---------------------------");
+		System.out.println("QTD.        CÓDIGO      DESCRIÇÃO          UNIT(R$)         TOTAL(R$)");
 		
 		double soma = 0;
 		
-		for (Produto produto : listaDeProdutos) {
+		for (Produto produto : listaProdutosEmVenda) {
 			
 			double totalDoProduto = produto.getPreco() * produto.getQuantidade();
 			
 			System.out.print(produto.getQuantidade());
-			System.out.print("          " + produto.getIdDoProduto());
-			System.out.print("          "+ produto.getDescricaoDoProduto());
+			System.out.print("           " + produto.getCodigoDoProduto());
+			System.out.print("          " + produto.getDescricaoDoProduto());
 			System.out.print("            " + produto.getPreco());
 			System.out.println("            " + totalDoProduto);
 		}
 
-			System.out.println("-----------------------------------------------------------------");
+			System.out.println("---------------------------------------------------------------------");
 			System.out.println("TOTAL:                                                           " + soma);
-			System.out.println("-----------------------------------------------------------------");
+			System.out.println("---------------------------------------------------------------------");
 			System.out.println();
 			
 	}	
-		
-//	public static void totalDasCompras(){
-//		double somaTotal = 0;
-//		for (Produto produto : listaDeProdutos) {
-//			for(int i = 0; i < listaDeProdutos.size(); i++){
-//				somaTotal += produto.getPreco();
-//			}
-//		}
-//	}
 }
-	//System.out.println("Categoria: " + produto.getCategoria().getNomeDaCategoria());
+
+
+
+
+
+
+//public static void totalDasCompras(){
+//double somaTotal = 0;
+//for (Produto produto : listaDeProdutos) {
+//	for(int i = 0; i < listaDeProdutos.size(); i++){
+//		somaTotal += produto.getPreco();
+//	}
+//}
+//}
+
+
+//System.out.println("Categoria: " + produto.getCategoria().getNomeDaCategoria());
 
 
 //do{
