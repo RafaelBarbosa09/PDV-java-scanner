@@ -25,30 +25,30 @@ public class TestaProduto {
 			opcao = sc.nextInt();
 			switch (opcao) {
 			case 1:
-				IProduto.cadastraProduto();
+				ProdutoServiceImpl.cadastraProduto();
 				break;
 			case 2:
-				IProduto.pesquisaProdutoPelo(codigo);
+				ProdutoServiceImpl.pesquisaProdutoPelo(codigo);
 				break;
 			case 3:
-				IProduto.editarProduto();
+				ProdutoServiceImpl.editarProduto();
 				break;
 			case 4:
-				IProduto.pesquisaProdutoPelaCategoria();
+				ProdutoServiceImpl.pesquisaProdutoPelaCategoria();
 				
 				break;
 			case 5:
-				IProduto.iniciaVendaNoPdv();
+				ProdutoServiceImpl.iniciaVendaNoPdv();
 				
 				break;
 			case 6:
-				System.out.println("cancelando Item");
+				ProdutoServiceImpl.cancelaItem();
 				break;
 			case 7:
-				System.out.println("cancelando venda");
+				ProdutoServiceImpl.cancelaCupom();
 				break;
 			case 8:
-				IProduto.listaCompras();
+				ProdutoServiceImpl.listaCompras();
 				break;
 			default:
 				System.out.println("Insira uma opção válida");
